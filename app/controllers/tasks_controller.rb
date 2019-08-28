@@ -9,6 +9,18 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def create
+    tasks = Task.mew(task_params)
+    task.save!
+    redirect_to task_url, notice: "タスク「#{task.name}」を登録しました。"
+  end
+
   def edit
+  end
+
+  private
+
+  def task_params
+    param.require(:task).permit(:name, :description)
   end
 end
